@@ -1,0 +1,119 @@
+flowchart TD
+
+R((R: root))
+
+R --> C1
+C1{"c1: Chance<br/>P1 card"}
+
+C1 -->|"Chance outcome: 0 (1/6)"| C2_0
+C1 -->|"Chance outcome: 1 (1/6)"| C2_1
+C1 -->|"Chance outcome: 2 (1/6)"| C2_2
+C1 -->|"Chance outcome: 3 (1/6)"| C2_3
+C1 -->|"Chance outcome: 4 (1/6)"| C2_4
+C1 -->|"Chance outcome: 5 (1/6)"| C2_5
+
+C2_0{"c2: Chance<br/>P2 card | P1=0"}
+C2_1{"c2: Chance<br/>P2 card | P1=1"}
+C2_2{"c2: Chance<br/>P2 card | given P1=2"}
+C2_3{"c2: Chance<br/>P2 card | given P1=3"}
+C2_4{"c2: Chance<br/>P2 card | given P1=4"}
+C2_5{"c2: Chance<br/>P2 card | given P1=5"}
+
+C2_0 -->|"Chance outcome: 1 (1/5)"| P1_I1
+C2_0 -->|"Chance outcome: 2 (1/5)"| P1_I1
+C2_0 -->|"Chance outcome: 3 (1/5)"| P1_I1
+C2_0 -->|"Chance outcome: 4 (1/5)"| P1_I1
+C2_0 -->|"Chance outcome: 5 (1/5)"| P1_I1
+
+C2_1 -->|"Chance outcome: 0 (1/5)"| P1_I1
+C2_1 -->|"Chance outcome: 2 (1/5)"| P1_I1
+C2_1 -->|"Chance outcome: 3 (1/5)"| P1_I1
+C2_1 -->|"Chance outcome: 4 (1/5)"| P1_I1
+C2_1 -->|"Chance outcome: 5 (1/5)"| P1_I1
+
+C2_2 -->|"Chance outcome: 0 (1/5)"| P1_I1
+C2_2 -->|"Chance outcome: 1 (1/5)"| P1_I1
+C2_2 -->|"Chance outcome: 3 (1/5)"| P1_I1
+C2_2 -->|"Chance outcome: 4 (1/5)"| P1_I1
+C2_2 -->|"Chance outcome: 5 (1/5)"| P1_I1
+
+C2_3 -->|"Chance outcome: 0 (1/5)"| P1_I1
+C2_3 -->|"Chance outcome: 1 (1/5)"| P1_I1
+C2_3 -->|"Chance outcome: 2 (1/5)"| P1_I1
+C2_3 -->|"Chance outcome: 4 (1/5)"| P1_I1
+C2_3 -->|"Chance outcome: 5 (1/5)"| P1_I1
+
+C2_4 -->|"Chance outcome: 0 (1/5)"| P1_I1
+C2_4 -->|"Chance outcome: 1 (1/5)"| P1_I1
+C2_4 -->|"Chance outcome: 2 (1/5)"| P1_I1
+C2_4 -->|"Chance outcome: 3 (1/5)"| P1_I1
+C2_4 -->|"Chance outcome: 5 (1/5)"| P1_I1
+
+C2_5 -->|"Chance outcome: 0 (1/5)"| P1_I1
+C2_5 -->|"Chance outcome: 1 (1/5)"| P1_I1
+C2_5 -->|"Chance outcome: 2 (1/5)"| P1_I1
+C2_5 -->|"Chance outcome: 3 (1/5)"| P1_I1
+C2_5 -->|"Chance outcome: 4 (1/5)"| P1_I1
+
+P1_I1["p1: Player 1, I1<br/>{Call, Raise}"]
+
+P1_I1 -->|Call| P2_I1
+P1_I1 -->|Raise| P2_I4
+
+P2_I1["p2: Player 2, I1<br/>{Call, Raise}"]
+P2_I4["p8: Player 2, I4<br/>{Fold, Call, Raise}"]
+
+P2_I1 -->|Call| C3
+P2_I1 -->|Raise| P1_I3
+
+C3{"c3: Chance<br/>Public card"}
+
+C3 -->|"Chance outcome: 2 (1/4)"| P1_I2
+C3 -->|"Chance outcome: 3 (1/4)"| P1_I2
+C3 -->|"Chance outcome: 4 (1/4)"| P1_I2
+C3 -->|"Chance outcome: 5 (1/4)"| P1_I2
+
+P1_I2["p3: Player 1, I2<br/>{Call, Raise}"]
+
+P1_I2 -->|Call| P2_I2
+P1_I2 -->|Raise| P2_I3
+
+P2_I2["p4: Player 2, I2<br/>{Call, Raise}"]
+P2_I3["p6: Player 2, I3<br/>{Fold, Call}"]
+
+P2_I2 -->|Call| T1
+P2_I2 -->|Raise| P1_I3b
+
+T1["t1<br/>{0, 0}"]
+
+P1_I3b["p5: Player 1, I3<br/>{Fold, Call, Raise}"]
+
+P1_I3b -->|Fold| T2
+P1_I3b -->|Call| T3
+P1_I3b -->|Raise| P2_I3b
+
+T2["t2<br/>{-1, 1}"]
+T3["t3<br/>{0, 0}"]
+
+P2_I3b["p7: Player 2, I3<br/>{Fold, Call}"]
+
+P2_I3b -->|Fold| T4
+P2_I3b -->|Call| T5
+
+T4["t4<br/>{5, -5}"]
+T5["t5<br/>{0, 0}"]
+
+P2_I4 -->|Fold| T6
+P2_I4 -->|Call| T7
+P2_I4 -->|Raise| P1_I4
+
+T6["t6<br/>{1, -1}"]
+T7["t7<br/>{0, 0}"]
+
+P1_I4["p9: Player 1, I4<br/>{Fold, Call}"]
+
+P1_I4 -->|Fold| T8
+P1_I4 -->|Call| T9
+
+T8["t8<br/>{-5, 5}"]
+T9["t9<br/>{0, 0}"]
