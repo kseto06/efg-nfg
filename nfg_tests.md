@@ -1,4 +1,4 @@
-## Rock Paper Scissors (`matrix_rps`)
+### Rock Paper Scissors (`matrix_rps`)
 - Tuple is in the form of `(Player 0, Player 1)`
 
 | P0 \ P1 | Action 0 (Rock) | Action 1 (Paper) | Action 2 (Scissors) |
@@ -9,7 +9,7 @@
 
 ---
 
-## Prisoner's Dilemma (`matrix_pd`)
+### Prisoner's Dilemma (`matrix_pd`)
 - Tuple is in the form of `(Player 0, Player 1)`
 
 | P0 \ P1 | Action 0 (Cooperate) | Action 1 (Defect) |
@@ -19,7 +19,7 @@
 
 ---
 
-## 3-Player Matching Pennies
+### 3-Player Matching Pennies (`matching_pennies_3p`)
 - Tuple is in the form of `(Player 0, Player 1, Player 2)`
 
 | Case | Player 0 | Player 1 | Player 2 | Payoffs |
